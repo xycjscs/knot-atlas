@@ -922,6 +922,7 @@ function openModal(id){
     lightboxImg.src = document.getElementById("mainimg-el").src;
     lightbox.classList.add("open");
   });
+  modal.querySelector("#mclose").addEventListener("click",closeModal);
   document.getElementById("mclose").focus();
 }
 function closeModal(){

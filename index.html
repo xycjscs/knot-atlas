@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>绳结图鉴 · The Knot Atlas — 中英双语用途与适用场景</title>
+<meta name="description" content="18 种常用绳结的中英双语图鉴：每个绳结的用途、适用场景、打法要点与注意事项。整理自知乎《各种绳结的绑法，受用无穷，总有一个你能用的到》。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f1e6;
+    --card:#fffdf7;
+    --ink:#2b2620;
+    --ink-soft:#4a4238;
+    --muted:#7a715f;
+    --line:#e2d9c4;
+    --line-soft:#ece4d2;
+    --accent:#9a5a22;
+    --accent-deep:#7c4416;
+    --accent-soft:#f0e2cd;
+    --warn-bg:#f7e8d8;
+    --warn-line:#d9a566;
+    --serif:"Noto Serif SC","Songti SC","SimSun",Georgia,serif;
+    --sans:"Noto Sans SC",-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:15px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent-soft)}
+
+  /* ============ header ============ */
+  header{
+    padding:56px 24px 28px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .kicker{
+    font-size:12px;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:700;
+    margin-bottom:14px;
+  }
+  .kicker .en{letter-spacing:.22em}
+  h1{
+    font-family:var(--serif);
+    font-weight:900;
+    font-size:clamp(34px,6vw,58px);
+    line-height:1.15;
+    letter-spacing:.02em;
+  }
+  h1 .en-sub{
+    display:block;
+    font-family:var(--sans);
+    font-weight:500;
+    font-size:clamp(13px,2vw,16px);
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:10px;
+  }
+  .lede{
+    max-width:640px;
+    margin-top:18px;
+    color:var(--ink-soft);
+    font-size:15px;
+  }
+  .lede .en{display:block;color:var(--muted);font-size:13.5px;margin-top:4px}
+  .rope-rule{
+    height:10px;margin-top:30px;border-radius:5px;
+    background:repeating-linear-gradient(90deg,var(--accent) 0 26px,var(--accent-deep) 26px 30px,#c98a4b 30px 56px,var(--accent) 56px 82px);
+    opacity:.85;
+    box-shadow:0 1px 0 rgba(0,0,0,.12);
+  }
+
+  /* ============ toolbar ============ */
+  .toolbar{
+    position:sticky;top:0;z-index:40;
+    background:rgba(246,241,230,.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    padding:12px 24px;
+  }
+  .toolbar-inner{max-width:1180px;margin:0 auto}
+  .search-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .search{
+    flex:1;min-width:220px;max-width:420px;
+    display:flex;align-items:center;gap:8px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 16px;
+  }
+  .search:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .search svg{flex:none}
+  .search input{
+    border:0;outline:0;background:transparent;
+    font:inherit;color:var(--ink);width:100%;
+  }
+  .search input::placeholder{color:var(--muted)}
+  .count{font-size:13px;color:var(--muted);white-space:nowrap}
+  .count b{color:var(--accent-deep);font-size:15px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .chip{
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--ink-soft);
+    border-radius:999px;
+    padding:5px 14px;
+    font-size:13px;
+    cursor:pointer;
+    font-family:inherit;
+    transition:background .15s,border-color .15s,color .15s;
+  }
+  .chip .n{color:var(--muted);font-size:11px;margin-left:5px}
+  .chip:hover{border-color:var(--accent);color:var(--accent-deep)}
+  .chip.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff8ee;
+  }
+  .chip.active .n{color:#f0d9bc}
+
+  /* ============ grid ============ */
+  main{max-width:1180px;margin:0 auto;padding:28px 24px 60px}
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(255px,1fr));
+    gap:18px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    cursor:pointer;
+    text-align:left;
+    font-family:inherit;
+    padding:0;
+    display:flex;flex-direction:column;
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+  }
+  .card:hover,.card:focus-visible{
+    transform:translateY(-3px);
+    box-shadow:0 10px 24px -12px rgba(75,54,25,.35);
+    border-color:var(--accent);
+    outline:none;
+  }
+  .card-img{
+    position:relative;
+    height:158px;
+    background:
+      repeating-linear-gradient(45deg,rgba(154,90,34,.045) 0 14px,transparent 14px 28px),
+      #faf6ec;
+    border-bottom:1px solid var(--line-soft);
+    display:flex;align-items:center;justify-content:center;
+    padding:12px;
+  }
+  .card-img img{
+    max-width:100%;max-height:100%;
+    object-fit:contain;
+    display:block;
+  }
+  .ghost-num{
+    position:absolute;top:6px;left:10px;
+    font-family:var(--serif);
+    font-weight:900;
+    font-size:34px;
+    color:rgba(154,90,34,.22);
+    line-height:1;
+    pointer-events:none;
+  }
+  .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .card-cat{
+    align-self:flex-start;
+    font-size:11px;
+    letter-spacing:.08em;
+    color:var(--accent-deep);
+    background:var(--accent-soft);
+    border-radius:4px;
+    padding:2px 8px;
+  }
+  .card-zh{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:20px;
+    line-height:1.3;
+  }
+  .card-en{
+    font-size:11.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:-4px;
+  }
+  .card-sum{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    margin-top:2px;
+  }
+  .card-cta{
+    margin-top:auto;
+    padding-top:8px;
+    font-size:12.5px;
+    color:var(--accent);
+    font-weight:500;
+  }
+  .card-cta .arr{display:inline-block;transition:transform .18s}
+  .card:hover .card-cta .arr{transform:translateX(4px)}
+  .empty{
+    display:none;
+    text-align:center;
+    padding:70px 20px;
+    color:var(--muted);
+  }
+  .empty .big{font-family:var(--serif);font-size:22px;color:var(--ink-soft);margin-bottom:8px}
+
+  /* ============ modal ============ */
+  .modal-backdrop{
+    position:fixed;inset:0;z-index:90;
+    background:rgba(35,28,18,.55);
+    display:none;
+    align-items:flex-start;justify-content:center;
+    padding:4vh 16px;
+    overflow-y:auto;
+  }
+  .modal-backdrop.open{display:flex}
+  .modal{
+    background:var(--card);
+    border-radius:14px;
+    max-width:900px;width:100%;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.5);
+    position:relative;
+    animation:pop .22s ease;
+  }
+  @keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.modal{animation:none}}
+  .modal-close{
+    position:absolute;top:14px;right:14px;z-index:5;
+    width:38px;height:38px;border-radius:50%;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--ink-soft);
+    font-size:18px;line-height:1;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .modal-close:hover{border-color:var(--accent);color:var(--accent-deep)}
+  .modal-head{
+    padding:28px 32px 18px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .modal-head .num{
+    font-family:var(--serif);font-weight:900;
+    font-size:13px;letter-spacing:.2em;
+    color:var(--accent);
+  }
+  .modal-head h2{
+    font-family:var(--serif);font-weight:900;
+    font-size:clamp(26px,4vw,36px);
+    margin-top:6px;line-height:1.2;
+  }
+  .modal-head .en-name{
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--muted);margin-top:4px;
+  }
+  .modal-head .aliases{
+    margin-top:8px;font-size:13px;color:var(--ink-soft);
+  }
+  .modal-head .aliases b{font-weight:500;color:var(--muted)}
+  .modal-body{
+    display:grid;
+    grid-template-columns:minmax(0,420px) minmax(0,1fr);
+    gap:28px;
+    padding:26px 32px 32px;
+  }
+  @media (max-width:720px){
+    .modal-body{grid-template-columns:1fr}
+    .modal-head{padding:24px 22px 16px}
+    .modal-body{padding:20px 22px 26px}
+  }
+  .gallery .main-img{
+    width:100%;
+    background:repeating-linear-gradient(45deg,rgba(154,90,34,.045) 0 14px,transparent 14px 28px),#faf6ec;
+    border:1px solid var(--line-soft);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    min-height:220px;
+    cursor:zoom-in;
+    padding:16px;
+  }
+  .gallery .main-img img{max-width:100%;max-height:340px;object-fit:contain}
+  .thumbs{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .thumbs button{
+    flex:1;min-width:70px;
+    background:#faf6ec;border:1px solid var(--line-soft);
+    border-radius:8px;padding:6px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;height:64px;
+  }
+  .thumbs button img{max-width:100%;max-height:100%;object-fit:contain}
+  .thumbs button:hover{border-color:var(--accent)}
+  .sec{margin-bottom:22px}
+  .sec:last-child{margin-bottom:0}
+  .sec-title{
+    font-size:12px;font-weight:700;letter-spacing:.2em;
+    color:var(--accent-deep);
+    text-transform:uppercase;
+    margin-bottom:10px;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .sec-title .zh{
+    font-family:var(--serif);font-size:15px;letter-spacing:.1em;
+    text-transform:none;color:var(--ink);
+  }
+  .bilingual p{font-size:14.5px;color:var(--ink-soft);margin-bottom:6px}
+  .bilingual .en{
+    font-size:13.5px;color:var(--muted);
+    font-style:italic;
+    border-left:2px solid var(--line);
+    padding-left:10px;margin:8px 0 0;
+  }
+  .uses-list{list-style:none}
+  .uses-list li{
+    position:relative;
+    padding:8px 0 8px 26px;
+    border-bottom:1px dashed var(--line-soft);
+    font-size:14.5px;color:var(--ink-soft);
+  }
+  .uses-list li:last-child{border-bottom:0}
+  .uses-list li::before{
+    content:"";
+    position:absolute;left:8px;top:16px;
+    width:7px;height:7px;border-radius:50%;
+    background:var(--accent);
+  }
+  .uses-list li .en{
+    display:block;font-size:13px;color:var(--muted);
+    font-style:italic;margin-top:2px;
+  }
+  .steps-ol{list-style:none;counter-reset:st}
+  .steps-ol li{
+    counter-increment:st;
+    position:relative;
+    padding:7px 0 7px 38px;
+    font-size:14px;color:var(--ink-soft);
+  }
+  .steps-ol li::before{
+    content:counter(st);
+    position:absolute;left:0;top:7px;
+    width:24px;height:24px;border-radius:50%;
+    background:var(--accent-soft);color:var(--accent-deep);
+    font-size:12px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .steps-ol li .en{display:block;font-size:12.5px;color:var(--muted);font-style:italic;margin-top:1px}
+  .note-box{
+    background:var(--warn-bg);
+    border:1px solid var(--warn-line);
+    border-radius:8px;
+    padding:12px 14px;
+    font-size:13.5px;color:#6b4318;
+  }
+  .note-box + .note-box{margin-top:8px}
+  .note-box .en{display:block;font-size:12.5px;color:#96683a;font-style:italic;margin-top:2px}
+  .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+  .modal-tags span{
+    font-size:11.5px;color:var(--muted);
+    border:1px solid var(--line);border-radius:4px;padding:2px 8px;
+    background:var(--paper);
+  }
+
+  /* lightbox */
+  .lightbox{
+    position:fixed;inset:0;z-index:120;
+    background:rgba(20,15,8,.92);
+    display:none;align-items:center;justify-content:center;
+    cursor:zoom-out;padding:4vh 4vw;
+  }
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:100%;max-height:100%;object-fit:contain}
+
+  /* ============ footer ============ */
+  footer{
+    border-top:1px solid var(--line);
+    margin-top:20px;
+    padding:34px 24px 46px;
+    background:var(--card);
+  }
+  footer .inner{max-width:1180px;margin:0 auto;font-size:13px;color:var(--muted);line-height:1.9}
+  footer a{color:var(--accent);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  footer .f-title{
+    font-family:var(--serif);font-weight:700;
+    font-size:16px;color:var(--ink);margin-bottom:8px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">Field Guide <span class="en">· 绳结野外手册 ·</span></div>
+  <h1>绳结图鉴<span class="en-sub">The Knot Atlas</span></h1>
+  <p class="lede">
+    18 种常用绳结，中英双语说明每一个结的<b>用途、适用场景、打法要点与注意事项</b>。
+    <span class="en">18 common knots — each with bilingual notes on uses, scenarios, tying steps and cautions.</span>
+  </p>
+  <div class="rope-rule" role="presentation"></div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-row">
+      <label class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7a715f" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        <input id="q" type="search" placeholder="搜索绳结 / search knots…（如：救援、fishing、捆扎）" autocomplete="off">
+      </label>
+      <span class="count">显示 <b id="shown">18</b> / 18</span>
+    </div>
+    <div class="chips" id="chips" role="tablist"></div>
+  </div>
+</div>
+
+<main>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty">
+    <div class="big">没有找到相关绳结</div>
+    <div>No knots match your search — try 救援, 连接, bowline…</div>
+  </div>
+</main>
+
+<footer>
+  <div class="inner">
+    <div class="f-title">来源与声明 · Source &amp; Disclaimer</div>
+    <p>内容整理自知乎专栏文章 <a href="https://zhuanlan.zhihu.com/p/433973573" target="_blank" rel="noopener">《各种绳结的绑法，受用无穷，总有一个你能用的到》</a>（原作者版权归网络原作者所有，本站仅作学习整理用途）。
+    <span style="display:block">Content compiled from a Zhihu column (zhuanlan.zhihu.com/p/433973573); images and original text belong to their respective authors — this site is for study and reference only.</span></p>
+    <p>绳结涉及安全（攀登、救援、承重）时，请务必在专业指导下学习并实际测试，不要仅凭图示用于高风险场景。
+    <span style="display:block">For safety-critical uses (climbing, rescue, load-bearing), always learn under qualified instruction and test before relying on any knot.</span></p>
+  </div>
+</footer>
+
+<!-- modal -->
+<div class="modal-backdrop" id="backdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" id="modal"></div>
+</div>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <img id="lightbox-img" src="" alt="绳结大图">
+</div>
+
+<script>
+"use strict";
+const CATS = {
+  stopper:{zh:"止结",en:"Stoppers"},
+  loop:{zh:"圈环",en:"Loops &amp; Snare"},
+  hitch:{zh:"系缚",en:"Hitches"},
+  join:{zh:"连接",en:"Joins"},
+  climbing:{zh:"攀爬保护",en:"Climbing"},
+  other:{zh:"其他",en:"Other"}
+};
+
+const KNOTS = [
+{
+  num:"01", id:"half-hitch", zh:"半结", en:"Half Hitch", cat:"stopper",
+  aliases:[],
+  img:["images/01-half-hitch.jpg"],
+  summary:{zh:"所有绳结的“基本结”，是许多复杂绳结的组成部分。",en:"The fundamental building block of all knots — a component of many more complex knots."},
+  uses:[
+    {zh:"防止绳索滑动。",en:"Prevents a line from sliding."},
+    {zh:"绳子末端开始脱线时，临时防止继续散开。",en:"Temporarily stops a fraying end from unraveling."}
+  ],
+  steps:[],
+  notes:[
+    {zh:"结打得太紧或遇水后会很难解开。",en:"Becomes very hard to untie once tightened or wet."}
+  ],
+  tags:["基础","防脱线","基础构件","basic","stopper"]
+},
+{
+  num:"02", id:"figure-eight", zh:"八字结", en:"Figure-Eight Knot", cat:"stopper",
+  aliases:[{zh:"八字止结",en:"Figure-Eight Stopper"},{zh:"八字编结（回穿）",en:"Figure-Eight Follow-Through"}],
+  img:["images/02-figure-eight.jpg","images/02b-figure-eight-static.jpg","images/16-figure-eight-following.jpg"],
+  summary:{zh:"打法简单、易记；即使两端拉得很紧，依然可以轻松解开。",en:"Easy to tie and remember; still easy to untie even after both ends are pulled hard."},
+  uses:[
+    {zh:"作为一条绳上的临时或简单制动点。",en:"A temporary or simple stopping / braking point on a line."},
+    {zh:"在绳端打止结，防止绳索脱出滑轮、绳夹或导环。",en:"A stopper at the end of a line so it cannot slip out of a pulley, clamp or ring."},
+    {zh:"回穿八字结（系锚/桩）：当物体太高、无法直接把打好的结套上时，先在绳上打一个松弛的八字结，将活端绕过物体再拉回，沿原线路回穿并系紧。",en:"Follow-through (tying to an anchor): when the object is too high to pass a pre-tied knot over, tie a loose figure-eight in the line, pass the end around the object and back, follow the original path back through the knot, then pull tight."}
+  ],
+  steps:[
+    {zh:"将绳弯曲成一环，把活端放到绳索固定部分的后面。",en:"Bend the rope into a loop; pass the working end behind the standing part."},
+    {zh:"绕过固定部分一圈。",en:"Wrap once around the standing part."},
+    {zh:"将活端从前面穿回环内，拉紧即成。",en:"Pass the working end back through the front of the loop and tighten."},
+    {zh:"回穿版本：先在绳上做好松弛的八字结，绕过物体后按原线路回穿，再拉紧。",en:"Follow-through: make the loose figure-eight first, go around the object, then follow the same route back through and tighten."}
+  ],
+  notes:[
+    {zh:"比反手结更有效，是绳端止结的首选。",en:"More effective than the overhand — the preferred stopper knot at a rope end."}
+  ],
+  tags:["止结","攀登","航海","救援","stopper","climbing","sailing"]
+},
+{
+  num:"03", id:"square-knot", zh:"平结", en:"Square Knot", cat:"join",
+  aliases:[{zh:"方结",en:"Reef Knot"}],
+  img:["images/03-square-knot.jpg","images/03b-square-knot-detail.jpg"],
+  summary:{zh:"使用频率最高、最为人所知的绳结。将粗细相同的两绳连在一起，即使承受很大拉力也很结实，而且易于解开。",en:"The most common and best-known knot. Joins two lines of equal thickness — very strong under heavy load, and still easy to untie."},
+  uses:[
+    {zh:"连结同样粗细、同样质材的两条绳索。",en:"Joining two ropes of the same thickness and material."},
+    {zh:"将绳索系在其他物体上。",en:"Tying a line to an object."},
+    {zh:"营救场景：结体平整光滑，不易勒伤被困者。",en:"Rescue work: it lies flat and smooth, so it is less likely to cut into a victim."},
+    {zh:"包装、捆扎、急救包扎等日常用途。",en:"Everyday lashing, packaging and first-aid bandaging."}
+  ],
+  steps:[
+    {zh:"将右边一根放在左边绳子的上面。",en:"Lay the right end over the left."},
+    {zh:"向下环绕，把左边绳端放到右边绳端上。",en:"Wrap down; place the left end over the right end."},
+    {zh:"再向下环绕，同时拉动两根绳索将平结系紧。",en:"Wrap down once more; pull both ends to set the knot (pulling the live end alone also sets it)."},
+    {zh:"小心检查：两个环应能彼此滑动。穿错位置会系不到一起（散开），或受力后难以解开。",en:"Check carefully: the two loops must slide past each other. A wrong thread gives a granny knot that slips or jams."},
+    {zh:"如怀疑是否可靠，可在平结每一端的活端在绳上再打半个半结（双半结加固）。",en:"If in doubt, back each end with a half hitch on the standing line."}
+  ],
+  notes:[
+    {zh:"口诀：左搭右、右搭左。",en:"Mnemonic: left over right, then right over left."},
+    {zh:"缠错时会变成不完全的活结，用力一拉就散开；拉得太紧不易解开，但双手握住绳头朝两边用力一拉可轻松解开。",en:"If wound wrong it becomes an incomplete slip knot that opens under load. If set too tight, grip the two ends and pull apart to release it."},
+    {zh:"不适用于较粗、表面光滑的绳索。",en:"Not suitable for thick or slick ropes."}
+  ],
+  tags:["连接","捆扎","救援","包装","join","lashing","rescue","packaging"]
+},
+{
+  num:"04", id:"bowline", zh:"称人结", en:"Bowline", cat:"loop",
+  aliases:[],
+  img:["images/04-bowline.jpg"],
+  summary:{zh:"被称为“绳结之王”，世界上最广为欢迎的绳结，在户外运动、各行各业乃至日常生活中频繁使用。",en:"“The king of knots” — the world's most widely used. Found in outdoor sports, in trades, and in daily life."},
+  uses:[
+    {zh:"在绳索末端结成一个固定的绳圈。",en:"Tying a fixed loop at the end of a rope."},
+    {zh:"将绳索系挂在其他物体上（吊环、挂钩、树、杆）。",en:"Attaching a line around an object — ring, hook, tree or pole."},
+    {zh:"攀登、航海、救生圈系挂、救援等场景。",en:"Climbing, sailing, rigging lifebuoys, rescue and more."}
+  ],
+  steps:[],
+  notes:[
+    {zh:"宜结宜解、配合保固安全性高、用途广泛、变化多端。",en:"Easy to tie and undo, highly secure once set, endlessly adaptable."}
+  ],
+  tags:["固定圈","救援","航海","攀登","fixed loop","rescue","sailing","climbing"]
+},
+{
+  num:"05", id:"clove-hitch", zh:"双套结", en:"Clove Hitch", cat:"hitch",
+  aliases:[],
+  img:["images/05-clove-hitch.jpg"],
+  summary:{zh:"常被用作其它绳结的开头和结束（起手结/收尾结）。",en:"Often used as the opening or closing move of a binding job."},
+  uses:[
+    {zh:"系在杆、桩等物体上，通常用于两端施力均等的物品（水平拉力）。",en:"Securing to a pole or stake — best where tension is shared evenly from both sides (horizontal pull)."},
+    {zh:"帐篷拉绳、货物捆扎的起手结。",en:"Starting knot for tent guy lines and lashing loads."}
+  ],
+  steps:[],
+  notes:[
+    {zh:"具备极高的安全性；但若只在绳索一端使力，结目可能会乱掉或松开。",en:"Very secure under balanced load — but if tension comes from only one end, the knot can slip or jam."}
+  ],
+  tags:["系缚","水平拉力","捆扎","帐篷","hitch","lashing","tents"]
+},
+{
+  num:"06", id:"three-half-hitch", zh:"三套结", en:"Three Half Hitch", cat:"hitch",
+  aliases:[
+    {zh:"转动结",en:"Rolling Hitch"},
+    {zh:"马格纳斯结",en:"Magnus Hitch"},
+    {zh:"拉绳结",en:"Taut-Line Hitch"},
+    {zh:"止索结",en:"Stopper Hitch"}
+  ],
+  img:["images/06-three-half-hitch.jpg"],
+  summary:{zh:"作用与双套结相同，但较为牢固。",en:"Same job as the clove hitch, but firmer."},
+  uses:[
+    {zh:"应用在沿绳索方向的拖力（垂直方向拉力）。",en:"For haul / axial tension along the line's own direction (vertical pull)."},
+    {zh:"拉绳结变体：结可沿绳滑动，随时调节松紧。",en:"As a taut-line hitch: the knot slides along the line so tension can be adjusted at any time."}
+  ],
+  steps:[],
+  notes:[],
+  tags:["系缚","轴向拉力","可调","hitch","axial tension","adjustable"]
+},
+{
+  num:"07", id:"fishermans", zh:"渔人结", en:"Fisherman's Knot", cat:"join",
+  aliases:[],
+  img:["images/07-fishermans.jpg","images/07b-fishermans-detail.png"],
+  summary:{zh:"十分容易打，但很难拆开。将两条绳连接在一起，通常是硬、软两种质地的绳。",en:"Easy to tie, hard to undo. Joins two lines — classically one stiff and one soft."},
+  uses:[
+    {zh:"将两条绳索连接在一起（一硬一软）。",en:"Joining two ropes — one stiff, one soft."},
+    {zh:"连接质地柔软的材料，例如藤条或金属线。",en:"Joining flexible material — vines or wire."},
+    {zh:"连接潮湿或打滑的钓线，特别适于钓鱼。",en:"Joining wet or slippery fishing line — its classic use."}
+  ],
+  steps:[
+    {zh:"将两根线放在一起，末端方向相反。",en:"Lay the two lines end to end, in opposite directions."},
+    {zh:"将其中一线的活端绕过另一根线，打一个反手结。",en:"Wrap the working end of one line around the other and tie an overhand knot."},
+    {zh:"用同样的方式，给另一根线的活端也打一个反手结。",en:"Repeat the same overhand with the other line's end."},
+    {zh:"轻微拉紧两个反手结，让它们彼此相向滑动、紧挨在一起，再系紧两结。",en:"Gently pull the two knots toward each other until they sit side by side, then tighten."}
+  ],
+  notes:[
+    {zh:"避免用于质地好的绳索，也不好用在会被拉得很紧的绳上——拉紧后极难解开。",en:"Avoid good-quality rope and situations where it will be pulled hard — once set tight, it is very difficult to undo."},
+    {zh:"连接钓线时先在水中浸泡使其柔软；细线上此结紧密牢固。",en:"For fishing line, wet it first so it is supple; the knot grips fine line firmly."},
+    {zh:"粗绳索或光滑尼龙线不可使用此结。",en:"Never use it on thick rope or slick nylon line."}
+  ],
+  tags:["钓鱼","连接","细线","不同材质","fishing","join","fine line"]
+},
+{
+  num:"08", id:"prusik", zh:"抓结", en:"Prusik Knot", cat:"climbing",
+  aliases:[{zh:"普鲁士结",en:"Prusik"},{zh:"移动结",en:"Movable Friction Hitch"}],
+  img:["images/08-prusik.jpg"],
+  summary:{zh:"用于行进、上升中的自我保护：不受力时可沿主绳滑动，受力时在主绳上卡住不动。",en:"For self-protection while moving or ascending: it slides freely on the main line when unloaded, and locks solid the moment it takes load."},
+  uses:[
+    {zh:"攀登 / 上升时的自我保护（备用保护点）。",en:"Self-belay / backup protection while climbing or ascending."},
+    {zh:"救援中的临时抓握点与制动。",en:"Temporary grip and braking points in rescue."},
+    {zh:"沿绳移动、上升与下降辅助。",en:"Moving, ascending and assisting on a rope."}
+  ],
+  steps:[],
+  notes:[
+    {zh:"摩擦力来自绳圈在主绳上的缠绕圈数，受力即锁定、撤力即滑动。",en:"Grip comes from the number of wraps around the main line: it locks under load and releases when the load is off."}
+  ],
+  tags:["攀登","自我保护","摩擦结","救援","climbing","friction hitch","rescue"]
+},
+{
+  num:"09", id:"camp-hitch", zh:"营钉结", en:"Camp Hitch", cat:"hitch",
+  aliases:[],
+  img:["images/09-camp-hitch.jpg"],
+  summary:{zh:"可让结位在绳上随时上下移动，随时调节绳的松紧度。",en:"The knot can slide up and down the line at will — tension is adjustable at any time."},
+  uses:[
+    {zh:"各种斜拉绳（帐篷风绳、天幕拉线）的收尾。",en:"Finishing adjustable guy lines — tent wind lines, canopy rigging."},
+    {zh:"任何需要随时调节松紧的场合。",en:"Any situation where tension must be changed on the fly."}
+  ],
+  steps:[],
+  notes:[],
+  tags:["系缚","可调","帐篷","风绳","hitch","adjustable","guy line"]
+},
+{
+  num:"10", id:"shortening", zh:"缩绳结", en:"Rope-Shortening Knot", cat:"other",
+  aliases:[],
+  img:["images/10-rope-shortening.jpg"],
+  summary:{zh:"将长绳收短，以免因太长而要剪短。",en:"Shortens a line so it doesn't have to be cut."},
+  uses:[
+    {zh:"收短过长的绳索，便于携带管理。",en:"Shortening an overly long line for easier carrying and stowage."},
+    {zh:"加强绳上容易磨损部位的保护。",en:"Reinforcing and protecting a wear-prone section of the line."}
+  ],
+  steps:[],
+  notes:[
+    {zh:"如绳打得太松，此结很容易松散而失去作用。",en:"If set too loose, the knot will loosen up and stop working."}
+  ],
+  tags:["收纳","磨损保护","coiling","wear protection"]
+},
+{
+  num:"11", id:"sheet-bend", zh:"接绳结", en:"Sheet Bend", cat:"join",
+  aliases:[{zh:"单编结",en:"Single Sheet Bend"}],
+  img:["images/11-sheet-bend.jpg","images/17-single-sheet-bend.jpg"],
+  summary:{zh:"将两条绳接在一起。容易解开。",en:"Joins two ropes together; easy to undo."},
+  uses:[
+    {zh:"连接粗细相同或不同的两根绳索——比用平结连接同样粗细的绳更有效。",en:"Joining lines of equal or different diameter — more effective than a square knot even for equal lines."},
+    {zh:"材质不同的绳索，特别是潮湿或结冰的绳索。",en:"Lines of different materials — especially wet or frozen line."}
+  ],
+  steps:[
+    {zh:"将一绳弯曲成环状。",en:"Form a bight (loop) in one rope."},
+    {zh:"另一绳的活端向右，从后面绕过环。",en:"Take the other rope's working end to the right and pass it behind the bight."},
+    {zh:"再从这根绳与另一绳之间的环间穿回。",en:"Then bring it back between the two strands."},
+    {zh:"拉紧；拉力增加时，此结会自动系紧。",en:"Pull tight — the knot cinches itself as the load increases."}
+  ],
+  notes:[
+    {zh:"制作简单，未承受拉力时也容易解开；制作无误且拉力稳定规则时，此结不会滑开。",en:"Simple to make and easy to undo before loading; if tied correctly and the load is steady and even, it will not slip."}
+  ],
+  tags:["连接","不同粗细","救援","潮湿绳索","join","mixed diameter","rescue"]
+},
+{
+  num:"12", id:"double-sheet-bend", zh:"双编结", en:"Double Sheet Bend", cat:"join",
+  aliases:[],
+  img:["images/18-double-sheet-bend.jpg"],
+  summary:{zh:"比单编结更结实耐用，对潮湿的绳索效果不错，特别在两根绳索粗细相差悬殊时。",en:"Firmer and more durable than the single sheet bend — excellent with wet rope, especially when the two lines differ a lot in diameter."},
+  uses:[
+    {zh:"两根绳索粗细相差悬殊时的连接。",en:"Joining lines of very different diameter."},
+    {zh:"潮湿的绳索。",en:"Wet rope."},
+    {zh:"两根绳都很粗时，用双编结连接也十分结实。",en:"Still excellent when both lines are thick."},
+    {zh:"拉力不稳定时更可靠（普通单编结此时容易滑落）。",en:"The reliable choice when tension is variable — a single sheet bend tends to slip then."}
+  ],
+  steps:[
+    {zh:"将较粗的绳弯曲成环状；细绳活端穿过此环，先移到粗绳活端的下面，再从前面环绕此环一周，然后从后面将细绳活端穿到细绳与粗绳活端之间。",en:"Bight the thick line. Pass the thin end through it, under the thick line's standing end, around the bight once, then back between the two ends."},
+    {zh:"将细绳活端再次环绕一周，再穿过相同位置（细绳与粗绳活端之间）。",en:"Wrap the thin end around once more and pass it back through the same gap."},
+    {zh:"拉紧，此结完成。",en:"Pull tight — done."}
+  ],
+  notes:[
+    {zh:"未拉紧时，此结受力容易松动，务必拉紧。",en:"If not pulled fully tight it will loosen under load — always set it hard."},
+    {zh:"制作此结不宜使用光滑的绳索，如尼龙质地的钓鱼线。",en:"Avoid slick lines such as nylon fishing line for this knot."}
+  ],
+  tags:["连接","粗细悬殊","潮湿绳索","承重","join","wet rope","load"]
+},
+{
+  num:"13", id:"timber-hitch", zh:"拉柴结", en:"Timber Hitch", cat:"hitch",
+  aliases:[{zh:"系木结",en:"Log Hitch"}],
+  img:["images/12-timber-hitch.jpg"],
+  summary:{zh:"拥有一个可随意调整的圈，用于绑紧及拖拉木材之类的物品。",en:"Forms a freely adjustable loop for binding and dragging logs and bulky items."},
+  uses:[
+    {zh:"绑紧木材之类的大件物品。",en:"Binding logs and other bulky objects."},
+    {zh:"拖拉重物。",en:"Dragging heavy objects."}
+  ],
+  steps:[],
+  notes:[
+    {zh:"虽然是一个方便可靠的结，但一定要始终受到拉力——否则将会松脱而导致危险。",en:"Convenient and reliable, but it must stay under load — released from tension it can back out and fail, which is dangerous."}
+  ],
+  tags:["系缚","拖木","重物","hitch","logging","heavy loads"]
+},
+{
+  num:"14", id:"hangman", zh:"绞刑结", en:"Gallows Knot", cat:"other",
+  aliases:[],
+  img:["images/13-hangman.jpg"],
+  summary:{zh:"原文中记载的历史绳结（处决用绳结打法），此处仅作资料整理保留。",en:"A historically documented execution knot from the source article — retained here for archival completeness only."},
+  uses:[
+    {zh:"无实际用途；不建议学习或模仿。",en:"No practical use; not recommended to learn or replicate."}
+  ],
+  steps:[],
+  notes:[
+    {zh:"本条目仅为保留原文资料的完整性，请勿用于任何实际场景。",en:"This entry exists solely to preserve the source document; do not use it in any practical context."}
+  ],
+  tags:["历史记录","historical record"]
+},
+{
+  num:"15", id:"overhand", zh:"反手结", en:"Overhand Knot", cat:"stopper",
+  aliases:[{zh:"单结",en:"Single Knot"}],
+  img:["images/14-overhand.jpg"],
+  summary:{zh:"所有结当中最简单的结：将绳索弯成一环，将活端从后面穿过此环拉紧即成。",en:"The simplest knot of all: bend the rope into a loop, pass the working end through from behind and pull tight."},
+  uses:[
+    {zh:"在绳端打一个结点，使绳头不易散开。",en:"A stopper at the rope end so the head doesn't unravel."},
+    {zh:"快速系在固定物体上：将环套在物体上紧拉，再用活端与环打一个反手结。",en:"Quickly securing to a fixed object: throw the loop over it, pull tight, then finish with an overhand on the loop."},
+    {zh:"许多其他绳结的组成部分。",en:"The building block of many other knots."}
+  ],
+  steps:[],
+  notes:[
+    {zh:"除用在绳端打结点外很少有其他用场，但它是许多其他结的基础。",en:"Apart from stopping a rope end it has few other uses — but it underlies many other knots."}
+  ],
+  tags:["基础","止结","防脱线","basic","stopper"]
+},
+{
+  num:"16", id:"strap-knot", zh:"带结", en:"Strap Knot", cat:"join",
+  aliases:[],
+  img:["images/19-strap-knot.jpg"],
+  summary:{zh:"对于表面平滑的材料（皮带、布带等）的连接效果不错。",en:"Works well for joining smooth, flat materials — belts, fabric straps and the like."},
+  uses:[
+    {zh:"连接皮带、布带等表面平滑的材料。",en:"Joining belts, fabric straps and other smooth materials."},
+    {zh:"情况紧急、缺少绳索时，甚至可以用被单或其他织物代替。",en:"In an emergency without rope, a sheet or other fabric can serve."}
+  ],
+  steps:[
+    {zh:"用一根带子的活端制作一个反手结，不要拉紧。",en:"Make a loose overhand knot with one strap's working end — do not tighten."},
+    {zh:"将另一根带子的活端沿反手结运动轨迹的相反方向穿越此结。",en:"Pass the other strap's end through the knot in the reverse direction of its path."},
+    {zh:"活端应恰好在结内，这样拉紧时活端就不会滑落。",en:"The end should sit neatly inside the knot so it cannot slip out when pulled tight."}
+  ],
+  notes:[],
+  tags:["带材","应急","webbing","emergency"]
+},
+{
+  num:"17", id:"slipping-loop", zh:"活动单套环", en:"Slipping Loop", cat:"loop",
+  aliases:[],
+  img:["images/20-slipping-loop.jpg"],
+  summary:{zh:"可以滑动、任意松紧的绳环：先制作一个小的单套环，然后将绳子的长端从此环穿过。",en:"A sliding loop that can be made tight or loose at will: tie a small single loop, then pass the long end of the rope through it."},
+  uses:[
+    {zh:"需要随时调节大小的绳圈。",en:"A loop whose size needs to be adjusted at any time."}
+  ],
+  steps:[],
+  notes:[
+    {zh:"警告：不能将此环系于腰间，登山时尤其危险——此环的功能类似绞索，受冲击时可能致命。",en:"Warning: never tie this around the waist — in climbing it functions like a garrote and a shock load can be fatal."}
+  ],
+  tags:["可调圈","危险","adjustable loop","hazard"]
+},
+{
+  num:"18", id:"lasso", zh:"套索", en:"Lasso", cat:"loop",
+  aliases:[],
+  img:["images/21-lasso.jpg"],
+  summary:{zh:"另一种能够自由滑动的套索结，具有明显的圆形环，适于投掷套取某物。",en:"Another freely sliding noose, with a clearly defined round loop — built for throwing and snaring."},
+  uses:[
+    {zh:"投掷套取物品或动物。",en:"Throwing to snare an object or animal."},
+    {zh:"野外求生技能（需要长时间的练习）。",en:"A wilderness skill that requires a lot of practice."}
+  ],
+  steps:[
+    {zh:"首先打一个反手结。",en:"Start with an overhand knot."},
+    {zh:"在离绳端一段距离弯成一个环。",en:"Bend a loop a distance from the end."},
+    {zh:"在反手结与环之间再将绳索折成半环。",en:"Fold the line into a half-loop between the knot and the loop."},
+    {zh:"将半环穿过先前弯成的绳环。",en:"Pass the half-loop through the first loop."},
+    {zh:"绕着半环将绳环系紧。",en:"Tighten the loop around the half-loop."},
+    {zh:"将绳索的长端穿过新的绳环。",en:"Pass the long end of the line through the new loop."}
+  ],
+  notes:[
+    {zh:"野外求生时若只有一根绳，花大量时间精力练习用它捕猎并不明智——绳可能因捕猎而损坏，真正需要时反而没有；但掌握这项技能在真正的困境下会取得回报。",en:"In the field, if you have only one rope, burning long hours practicing snare-hunting is unwise — the rope may be damaged and missing when you truly need it. Still, the skill pays off in a real emergency."}
+  ],
+  tags:["套索","投掷","野外","snare","wilderness"]
+}
+];
+
+/* ---------- state ---------- */
+const state = { cat:"all", q:"" };
+const grid = document.getElementById("grid");
+const chipsEl = document.getElementById("chips");
+const qEl = document.getElementById("q");
+const shownEl = document.getElementById("shown");
+const emptyEl = document.getElementById("empty");
+const backdrop = document.getElementById("backdrop");
+const modal = document.getElementById("modal");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+/* ---------- chips ---------- */
+function buildChips(){
+  const counts = {};
+  KNOTS.forEach(k=>{ counts[k.cat]=(counts[k.cat]||0)+1; });
+  let html = `<button class="chip active" data-cat="all">全部<span class="n">${KNOTS.length}</span></button>`;
+  for(const key of Object.keys(CATS)){
+    if(!counts[key]) continue;
+    html += `<button class="chip" data-cat="${key}">${CATS[key].zh} ${CATS[key].en.replace("&amp;","&")}<span class="n">${counts[key]}</span></button>`;
+  }
+  chipsEl.innerHTML = html;
+  chipsEl.addEventListener("click",e=>{
+    const b = e.target.closest(".chip"); if(!b) return;
+    state.cat = b.dataset.cat;
+    chipsEl.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c===b));
+    render();
+  });
+}
+
+/* ---------- search ---------- */
+qEl.addEventListener("input",()=>{ state.q = qEl.value.trim().toLowerCase(); render(); });
+
+function matches(k){
+  if(state.cat!=="all" && k.cat!==state.cat) return false;
+  if(!state.q) return true;
+  const hay = [k.zh,k.en,k.summary.zh,k.summary.en,
+    ...k.aliases.map(a=>a.zh+" "+a.en),
+    ...k.tags,
+    CATS[k.cat].zh, CATS[k.cat].en.replace("&amp;","")
+  ].join(" ").toLowerCase();
+  return state.q.split(/\s+/).every(t=>hay.includes(t));
+}
+
+/* ---------- render ---------- */
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function render(){
+  const list = KNOTS.filter(matches);
+  shownEl.textContent = list.length;
+  emptyEl.style.display = list.length ? "none" : "block";
+  grid.innerHTML = list.map(k=>`
+    <button class="card" data-id="${k.id}" aria-label="${esc(k.zh)} ${esc(k.en)}">
+      <div class="card-img">
+        <span class="ghost-num">${k.num}</span>
+        <img src="${k.img[0]}" alt="${esc(k.zh)} 示意图" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="card-cat">${CATS[k.cat].zh} · ${CATS[k.cat].en.replace("&amp;","&")}</span>
+        <div class="card-zh">${esc(k.zh)}</div>
+        <div class="card-en">${esc(k.en)}</div>
+        <p class="card-sum">${esc(k.summary.zh)}</p>
+        <div class="card-cta">查看用途与打法 <span class="arr">→</span></div>
+      </div>
+    </button>`).join("");
+}
+
+grid.addEventListener("click",e=>{
+  const c = e.target.closest(".card"); if(!c) return;
+  openModal(c.dataset.id);
+});
+
+/* ---------- modal ---------- */
+let lastFocus = null;
+function openModal(id){
+  const k = KNOTS.find(x=>x.id===id); if(!k) return;
+  lastFocus = document.activeElement;
+  const aliases = k.aliases.length
+    ? `<div class="aliases"><b>又称 / Also known as:</b> ${k.aliases.map(a=>`${esc(a.zh)} ${esc(a.en)}`).join("；")}</div>` : "";
+  const uses = k.uses.map(u=>`<li>${esc(u.zh)}<span class="en">${esc(u.en)}</span></li>`).join("");
+  const steps = k.steps.length
+    ? `<ol class="steps-ol">${k.steps.map(s=>`<li>${esc(s.zh)}<span class="en">${esc(s.en)}</span></li>`).join("")}</ol>` : "";
+  const notes = k.notes.length
+    ? k.notes.map(n=>`<div class="note-box">${esc(n.zh)}<span class="en">${esc(n.en)}</span></div>`).join("") : "";
+  const thumbs = k.img.length>1
+    ? `<div class="thumbs">${k.img.map((src,i)=>`<button data-i="${i}" aria-label="图片 ${i+1}"><img src="${src}" alt=""></button>`).join("")}</div>` : "";
+  modal.innerHTML = `
+    <button class="modal-close" id="mclose" aria-label="关闭">✕</button>
+    <div class="modal-head">
+      <div class="num">No.${k.num} · ${CATS[k.cat].zh} ${CATS[k.cat].en}</div>
+      <h2>${esc(k.zh)}</h2>
+      <div class="en-name">${esc(k.en)}</div>
+      ${aliases}
+    </div>
+    <div class="modal-body">
+      <div class="gallery">
+        <div class="main-img" id="mainimg" title="点击查看大图"><img id="mainimg-el" src="${k.img[0]}" alt="${esc(k.zh)} 示意图"></div>
+        ${thumbs}
+      </div>
+      <div class="detail">
+        <div class="sec">
+          <div class="sec-title"><span class="zh">简介</span>Overview</div>
+          <div class="bilingual"><p>${esc(k.summary.zh)}</p><p class="en">${esc(k.summary.en)}</p></div>
+        </div>
+        <div class="sec">
+          <div class="sec-title"><span class="zh">用途与适用场景</span>Uses &amp; Scenarios</div>
+          <ul class="uses-list">${uses}</ul>
+        </div>
+        ${steps ? `<div class="sec"><div class="sec-title"><span class="zh">打法要点</span>How to Tie</div>${steps}</div>`:""}
+        ${notes ? `<div class="sec"><div class="sec-title"><span class="zh">注意事项</span>Notes &amp; Cautions</div>${notes}</div>`:""}
+        <div class="sec">
+          <div class="sec-title"><span class="zh">标签</span>Tags</div>
+          <div class="modal-tags">${k.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div>
+        </div>
+      </div>
+    </div>`;
+  backdrop.classList.add("open");
+  backdrop.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+  modal.querySelector(".gallery").addEventListener("click",e=>{
+    const b = e.target.closest("button[data-i]");
+    if(b){ document.getElementById("mainimg-el").src = k.img[+b.dataset.i]; }
+  });
+  modal.querySelector("#mainimg").addEventListener("click",()=>{
+    lightboxImg.src = document.getElementById("mainimg-el").src;
+    lightbox.classList.add("open");
+  });
+  document.getElementById("mclose").focus();
+}
+function closeModal(){
+  backdrop.classList.remove("open");
+  backdrop.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+  lightbox.classList.remove("open");
+  if(lastFocus) lastFocus.focus();
+}
+backdrop.addEventListener("click",e=>{ if(e.target===backdrop) closeModal(); });
+lightbox.addEventListener("click",()=>lightbox.classList.remove("open"));
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){
+    if(lightbox.classList.contains("open")) lightbox.classList.remove("open");
+    else if(backdrop.classList.contains("open")) closeModal();
+  }
+});
+
+buildChips();
+render();
+</script>
+</body>
+</html>
